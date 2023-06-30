@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
-public class ReqresInTests {
+public class ReqresInTests extends TestBase{
 
     @Test
     void checkListUsersAttributes() {
@@ -19,7 +19,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -42,7 +42,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users")
+                .get("/users")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -65,7 +65,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users/2")
+                .get("/users/2")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -85,7 +85,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users/2")
+                .get("/users/2")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -99,7 +99,7 @@ public class ReqresInTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users/100")
+                .get("/users/100")
                 .then()
                 .log().all()
                 .statusCode(404);
@@ -116,7 +116,7 @@ public class ReqresInTests {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -136,7 +136,7 @@ public class ReqresInTests {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .put("https://reqres.in/api/users/2")
+                .put("/users/2")
                 .then()
                 .log().status()
                 .log().body()
