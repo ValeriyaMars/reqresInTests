@@ -1,0 +1,40 @@
+plugins {
+    id 'java-library'
+}
+
+
+group 'ru.marshenina'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def restAssuredVersion = "5.3.0",
+    slf4jVersion = "2.0.7"
+
+dependencies {
+    testImplementation(
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion",
+            "org.junit.jupiter:junit-jupiter:5.9.2",
+            "org.slf4j:slf4j-simple:$slf4jVersion"
+            )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+      //      events "started", "failed"
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
